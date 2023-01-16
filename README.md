@@ -7,6 +7,8 @@ Decrypted 488.28 MB in 1.864 seconds from memory, Throughtput is 261.95 MB per s
 
 
 > nproc
+8
+
 > base64 /dev/urandom | head -c 50000000 > file.txt && java AESCipherMultiThreads.java
 
 With 1 Threads, Decrypted 1.40 GB in 4.835 seconds from memory, Throughtput is 295.87 MB per second
