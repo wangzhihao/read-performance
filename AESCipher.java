@@ -17,12 +17,13 @@ public class AESCipher {
         Path path = Paths.get("file.txt");
         long bytes = Files.size(path);
 
-        long start = System.currentTimeMillis();
         byte[] input = Files.readAllBytes(path);
+
+        long start = System.currentTimeMillis();
         byte[] cipherText = c.doFinal(input);
         long finish = System.currentTimeMillis();
 
-        System.out.print("Encrypted " + formatFileSize(bytes) + " in " +  1.0 * (finish - start) / 1000 + " seconds from file, ");
+        System.out.print("Encrypted " + formatFileSize(bytes) + " in " +  1.0 * (finish - start) / 1000 + " seconds from memory, ");
         System.out.println("Throughtput is " + formatFileSize(1.0 * bytes / (finish - start) * 1000) + " per second");
 
         start = System.currentTimeMillis();
