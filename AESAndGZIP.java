@@ -29,8 +29,23 @@ public class AESAndGZIP{
         gzip.decompress(aes.decrypt(output));
         finish = System.currentTimeMillis();
 
-        System.out.print("UnWrap data " + formatFileSize(bytes) + " in " +  1.0 * (finish - start) / 1000 + " seconds from memory, ");
-        System.out.println("Throughtput is " + formatFileSize(1.0 * bytes / (finish - start) * 1000) + " per second");
+        System.out.print("UnWrap data " + formatFileSize(output.length) + " in " +  1.0 * (finish - start) / 1000 + " seconds from memory, ");
+        System.out.println("Throughtput is " + formatFileSize(1.0 * output.length / (finish - start) * 1000) + " per second");
+
+        start = System.currentTimeMillis();
+        byte[] buffer = new byte[1024*1024]; 
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try(InputStream in = new GZIPInputStream(new CipherInputStream(new ByteArrayInputStream(output), aes.decryptC))) {
+            int len;
+            while ((len = in.read(buffer)) > 0) {
+                baos.write(buffer, 0, len);
+            }
+        }
+        baos.toByteArray();
+        finish = System.currentTimeMillis();
+
+        System.out.print("UnWrap data as stream " + formatFileSize(output.length) + " in " +  1.0 * (finish - start) / 1000 + " seconds from memory, ");
+        System.out.println("Throughtput is " + formatFileSize(1.0 * output.length/ (finish - start) * 1000) + " per second");
 
     }
         // https://stackoverflow.com/a/20556766
@@ -62,7 +77,7 @@ public class AESAndGZIP{
 }
 
 class AESUtils {
-    private Cipher encryptC, decryptC;
+    public Cipher encryptC, decryptC;
 
    public AESUtils() throws Exception {
         this.encryptC = Cipher.getInstance("AES/CBC/PKCS5Padding");
