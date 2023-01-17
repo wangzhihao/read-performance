@@ -32,8 +32,8 @@ public class GZIP {
         }
         finish = System.currentTimeMillis();
 
-        System.out.print("Decompress " + formatFileSize(bytes) + " in " +  1.0 * (finish - start) / 1000 + " seconds from memory, ");
-        System.out.println("Throughtput is " + formatFileSize(1.0 * bytes / (finish - start) * 1000) + " per second");
+        System.out.print("Decompress " + formatFileSize(output.length) + " in " +  1.0 * (finish - start) / 1000 + " seconds from memory, ");
+        System.out.println("Throughtput is " + formatFileSize(1.0 * output.length / (finish - start) * 1000) + " per second");
 
     }
         // https://stackoverflow.com/a/20556766
