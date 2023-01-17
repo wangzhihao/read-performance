@@ -29,7 +29,8 @@ With 15 Threads, Decrypted 1.40 GB in 0.864 seconds from memory, Throughtput is 
 With 16 Threads, Decrypted 1.40 GB in 0.877 seconds from memory, Throughtput is 1.59 GB per second
 
 > base64 /dev/urandom | head -c 512000000 > file.txt  && java GZIP.java
-Compress 488.28 MB in 23.441 seconds from memory, Throughtput is 20.83 MB per second
-Decompress 488.28 MB in 2.464 seconds from memory, Throughtput is 198.17 MB per second
+Compress 488.28 MB in 23.297 seconds from memory, Throughtput is 20.96 MB per second
+Size after compress is 371.43 MB compress ratio: 0.7606822578125
+Decompress 488.28 MB in 2.467 seconds from memory, Throughtput is 197.93 MB per second
 ```
 

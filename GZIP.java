@@ -24,6 +24,7 @@ public class GZIP {
 
         System.out.print("Compress " + formatFileSize(bytes) + " in " +  1.0 * (finish - start) / 1000 + " seconds from memory, ");
         System.out.println("Throughtput is " + formatFileSize(1.0 * bytes / (finish - start) * 1000) + " per second");
+        System.out.println("Size after compress is " + formatFileSize(output.length) + " compress ratio: " + 1.0 * output.length / bytes);
 
         start = System.currentTimeMillis();
         try(GZIPInputStream in = new GZIPInputStream(new ByteArrayInputStream(output))) {
